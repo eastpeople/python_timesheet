@@ -6,16 +6,17 @@ from time import sleep
 from shutil import copyfile
 import re, os, sys, openpyxl
 
-emp_nums = {'조수안' : {"emp_num" : '1501011', "dept" : '바이오빅데이터', "team" : 'IDC운영/서버사업팀'} \
-            , '이덕형' : {"emp_num" : '1804232', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '변하나' : {"emp_num" : '1906171', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '이경주' : {"emp_num" : '1909191', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '문수린' : {"emp_num" : '1909241', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '송현규' : {"emp_num" : '1910141', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '민진규' : {"emp_num" : '1911041', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '신동민' : {"emp_num" : '2001131', "dept" : '바이오빅데이터', "team" : 'IT개발팀'} \
-            , '김수영' : {"emp_num" : '2010191', "dept" : '바이오빅데이터', "team" : 'IDC운영/서버사업팀'} \
-            , '한민영' : {"emp_num" : '2103152', "dept" : '바이오빅데이터', "team" : 'IT개발팀'}}
+emp_nums = {'조수안' : {"emp_num" : '1501011', "dept" : 'BBC', "team" : 'IT실'} \
+            , '이덕형' : {"emp_num" : '1804232', "dept" : 'BBC', "team" : 'IT실'} \
+            , '변하나' : {"emp_num" : '1906171', "dept" : 'BBC', "team" : 'IT실'} \
+            , '이경주' : {"emp_num" : '1909191', "dept" : 'BBC', "team" : 'IT실'} \
+            , '문수린' : {"emp_num" : '1909241', "dept" : 'BBC', "team" : 'IT실'} \
+            , '송현규' : {"emp_num" : '1910141', "dept" : 'BBC', "team" : 'IT실'} \
+            , '민진규' : {"emp_num" : '1911041', "dept" : 'BBC', "team" : 'IT실'} \
+            , '신동민' : {"emp_num" : '2001131', "dept" : 'BBC', "team" : 'IT실'} \
+            , '김수영' : {"emp_num" : '2010191', "dept" : 'BBC', "team" : 'IT실'} \
+            , '한민영' : {"emp_num" : '2103152', "dept" : 'BBC', "team" : 'IT실'} \
+            , '최서인' : {"emp_num" : '2110052', "dept" : 'BBC', "team" : 'IT실'}}
 
 argument = sys.argv
 print(argument)
