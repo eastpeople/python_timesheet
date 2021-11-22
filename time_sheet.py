@@ -31,7 +31,7 @@ findex = 0
 filename = ''
 while True:
     findex += 1
-    filename = 'time sheet_IT실_v' + str(findex) + '.xlsx'
+    filename = 'team_v' + str(findex) + '.xlsx'
     if not os.path.exists(path + filename): break
 
 filename = path + filename
