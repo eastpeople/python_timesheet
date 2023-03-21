@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<meta charset="UTF-8">
+    <title>우마무스메 랭크 점수 계산기</title>
+	<link href="css/style.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+	
+	<div class="row">
+		<img class="fleft" src="img/toplogo.png" />
+		<h3 class="fright">유전자검사 설문 &nbsp;</h3>
+	</div>
+	<div class="container">
+		<form data-parsley-validate="">
+			
+			<div id="page1">
+				<div class="row">
+					<div class="row">
+						<div class="col-75">
+							<h4><img src="img/sex.png">성별</h4>
+							<div id="sex-errors"></div>
+						</div>
+						<div class="col-75">
+							<label><input name="sex" type="radio" value="M" required="" data-parsley-errors-container="#sex-errors"/>남성</label>
+							<label><input name="sex" type="radio" value="F"/>여성</label>
+						</div>
+					</div>
+					<div class="col-75">
+						<h4>키/몸무게</h4>
+					</div>
+					<div class="col-75">
+						<label>키 (cm) <input type="number" pattern="\d*" name="height" maxlength="3"
+								style="width: 50px;" required="" data-parsley-range="[10, 400]">
+						</label>
+						<label>몸무게 (kg) <input type="number" pattern="\d*" name="weight" maxlength="3"
+								style="width: 50px;" required="" data-parsley-range="[10, 1000]">
+						</label>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+					<input name="next" type="button" class="fright" value="다음">
+				</div>
+			</div>
+
+			<div id="page2" class="hide">
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/cigarrete.png">흡연 습관</h4>
+						<div id="smoking-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="smoking" type="radio" value="1" required="" data-parsley-errors-container="#smoking-errors"/>현재 흡연</label>
+						<label><input name="smoking" type="radio" value="2"/>현재 흡연하지 않으나, 과거에 흡연</label>
+						<label><input name="smoking" type="radio" value="3"/>흡연 경험 없음</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/beer.png">음주 량</h4>
+						<div id="alcohol-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="alcohol" type="checkbox" value="4"
+							onclick="nonAlcohol(this)" required="" data-parsley-errors-container="#alcohol-errors"/><b>전혀 음주 안함</b></label>
+					</div>
+					<div class="col-75">
+						<b>소주</b>
+						<label><input name="alcohol" type="checkbox" value="1-1"/>주 3병 이상</label>
+						<label><input name="alcohol" type="checkbox" value="2-1"/>주 1~3병</label>
+						<label><input name="alcohol" type="checkbox" value="3-1"/>주 1병 미만</label>
+					</div>
+					<div class="col-75">
+						<b>맥주</b>
+						<label><input name="alcohol" type="checkbox" value="1-2"/>주 3병 이상</label>
+						<label><input name="alcohol" type="checkbox" value="2-2"/>주 1~3병</label>
+						<label><input name="alcohol" type="checkbox" value="3-2"/>주 1병 미만</label>
+					</div>
+					<div class="col-75">
+						<b>와인</b>
+						<label><input name="alcohol" type="checkbox" value="1-3"/>주 3병 이상</label>
+						<label><input name="alcohol" type="checkbox" value="2-3"/>주 1~3병</label>
+						<label><input name="alcohol" type="checkbox" value="3-3"/>주 1병 미만</label>
+					</div>
+				</div>
+
+				<hr />
+				<div class="row">
+					<input name="prev" type="button" class="fleft" value="이전">
+					<input name="next" type="button" class="fright" value="다음">
+				</div>
+
+			</div>
+
+			<div id="page3" class="hide">
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/meat.png">육류 섭취 빈도(붉은육류 및 가공육)</h4>
+						<div id="meat-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="meat" type="radio" value="1" required="" data-parsley-errors-container="#meat-errors"/>거의 매일</label>
+						<label><input name="meat" type="radio" value="2"/>주 3~5일</label>
+						<label><input name="meat" type="radio" value="3"/>주 1~2일</label>
+						<label><input name="meat" type="radio" value="4"/>주 1회 미만</label>
+						<label><input name="meat" type="radio" value="5"/>전혀 먹지 않음</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/sausages.png">인스턴트/가공식품 섭취 빈도</h4>
+						<div id="sausages-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="instant" type="radio" value="1" required="" data-parsley-errors-container="#sausages-errors"/>거의 매일</label>
+						<label><input name="instant" type="radio" value="2"/>주 3~5일</label>
+						<label><input name="instant" type="radio" value="3"/>주 1~2일</label>
+						<label><input name="instant" type="radio" value="4"/>주 1회 미만</label>
+						<label><input name="instant" type="radio" value="5"/>전혀 먹지 않음</label>
+					</div>
+				</div>
+				
+
+				<hr />
+				<div class="row">
+					<input name="prev" type="button" class="fleft" value="이전">
+					<input name="next" type="button" class="fright" value="다음">
+				</div>
+
+			</div>
+
+			<div id="page4" class="hide">
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/fried-potatoes.png">튀김식품 섭취 빈도</h4>
+						<div id="fried-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="fried" type="radio" value="1" required="" data-parsley-errors-container="#fried-errors"/>거의 매일</label>
+						<label><input name="fried" type="radio" value="2"/>주 3~5일</label>
+						<label><input name="fried" type="radio" value="3"/>주 1~2일</label>
+						<label><input name="fried" type="radio" value="4"/>주 1회 미만</label>
+						<label><input name="fried" type="radio" value="5"/>전혀 먹지 않음</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/salt-shaker.png">짠 음식 섭취 빈도</h4>
+						<div id="salt-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="salt" type="radio" value="1" required="" data-parsley-errors-container="#salt-errors"/>매우 짜게 먹음</label>
+						<label><input name="salt" type="radio" value="2"/>약간 짜게 먹음</label>
+						<label><input name="salt" type="radio" value="3"/>적당한 간</label>
+						<label><input name="salt" type="radio" value="4"/>싱겁게 먹음</label>
+						<label><input name="salt" type="radio" value="5"/>간이 거의 안든 음식을 먹음</label>
+					</div>
+				</div>
+				
+
+				<hr />
+				<div class="row">
+					<input name="prev" type="button" class="fleft" value="이전">
+					<input name="next" type="button" class="fright" value="다음">
+				</div>
+
+			</div>
+			
+			<div id="page5" class="hide">
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/exercise.png">운동 습관</h4>
+						<div id="exercise-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="exercise" type="radio" value="1" required="" data-parsley-errors-container="#excercise-errors"/>거의 매일</label>
+						<label><input name="exercise" type="radio" value="2"/>주 3~5회</label>
+						<label><input name="exercise" type="radio" value="3"/>주 1~2회</label>
+						<label><input name="exercise" type="radio" value="4"/>한달 1~3회</label>
+						<label><input name="exercise" type="radio" value="5"/>거의 안함</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/depression.png">우울감</h4>
+						<div id="depression-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="depression" type="radio" value="1" required="" data-parsley-errors-container="#depression-errors"/>항상 느낌</label>
+						<label><input name="depression" type="radio" value="2"/>자주 느낌</label>
+						<label><input name="depression" type="radio" value="3"/>보통</label>
+						<label><input name="depression" type="radio" value="4"/>약간 느낌</label>
+						<label><input name="depression" type="radio" value="5"/>거의 없음</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<h4><img src="img/stress.png">스트레스</h4>
+						<div id="stress-errors"></div>
+					</div>
+					<div class="col-75">
+						<label><input name="stress" type="radio" value="1" required="" data-parsley-errors-container="#stress-errors"/>항상 받음</label>
+						<label><input name="stress" type="radio" value="2"/>자주 받음</label>
+						<label><input name="stress" type="radio" value="3"/>보통</label>
+						<label><input name="stress" type="radio" value="4"/>약간 받음</label>
+						<label><input name="stress" type="radio" value="5"/>거의 없음</label>
+					</div>
+				</div>
+				
+
+				<hr />
+				<div class="row">
+					<input name="prev" type="button" class="fleft" value="이전">
+					<input name="next" type="button" class="fright" value="다음">
+				</div>
+
+			</div>
+
+			<div id="page6" class="hide">
+				
+				<div class="row">
+					<div class="col-75">
+						<h4>이름</h4>
+					</div>
+					<div class="col-75">
+						<input type="text" id="fname" name="name" placeholder="" required="">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-75">
+						<h4>생년월일</h4>
+					</div>
+					<div class="col-75">
+						<select name="years" required="">
+						</select>
+						<select name="months" required="">
+						</select>
+						<select name="days" required="">
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-75">
+						<h4>주소</h4>
+					</div>
+					<div class="col-75">
+						<button type="button" class="normal-btn" onclick="execDaumPostcode()">우편번호 찾기</button>
+						<input type="text" id="zipcode" name="zipcode" maxlength="7" readonly style="width: 100px;"/>
+						<input type="text" id="address" name="address" maxlength="100" readonly/>
+						<input type="text" id="detailAddress" name="detailAddress" placeholder="우편번호 찾기를 눌러 주세요"
+							data-parsley-pattern-message="우편번호 찾기 후 입력해 주세요." maxlength="100" required="" readonly/>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-75">
+						<h4>전화번호 <small>('-'없이)</small></h4>
+					</div>
+					<div class="col-75">
+						<input type="number" name="tel" pattern="^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$"
+									data-parsley-pattern-message="휴대전화번호가 유효하지 않습니다." required="">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-75">
+						<h4>차트번호</h4>
+					</div>
+					<div class="col-75">
+						<input type="number" name="chartNumber" placeholder="" required="">
+					</div>
+				</div>
+				
+				<div class="row hide">
+					<div class="col-75">
+						<h4>병, 의원</h4>
+					</div>
+					<div class="col-75">
+						<select name="agencyId" required="">
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-75">
+						<h4>유전자 검사 상품</h4>
+					</div>
+					<div class="col-75">
+						<select name="bundleId" required="">
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<p>
+						개인정보를 수집·이용하는데 
+						동의 하십니까?
+					</p>
+						<label><input name="policy" type="radio" required="" data-parsley-errors-container="#sex-errors"/>예</label>
+						<label><input name="policy" type="radio"/>아니오</label>
+					<p>
+						(개인정보 처리방침 보기)
+					</p>
+					
+				</div>
+
+				<hr />
+				<div class="row">
+					<input name="prev" type="button" class="fleft" value="이전">
+					<input id="complete" type="button" class="fright hide" value="완료" >
+				</div>
+				<div class="row">
+					<p id="msg"></p>
+				</div>
+			</div>
+			<input name="birthday" type="hidden">
+		</form>
+	</div>
+
+</body>
+
+<script>
+	
+	$(function () {
+		
+	});
+
+</script>
+
+</html>
